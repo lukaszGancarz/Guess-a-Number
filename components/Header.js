@@ -12,15 +12,15 @@ const Header = (props) => {
 const styles = StyleSheet.create({
   header: {
     width: "100%",
-    height: 90,
+    height: 70,
     backgroundColor: "#f7287b",
-    paddingTop: 36,
+    paddingTop: 30,
     alignItems: "center",
     justifyContent: "center",
   },
   headerTitle: {
     color: "black",
-    fontSize: 18,
+    fontSize: 22,
   },
 });
 
