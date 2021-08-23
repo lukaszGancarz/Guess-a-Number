@@ -1,9 +1,11 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Text, View, StyleSheet, Button, Alert } from "react-native";
+import { Text, View, StyleSheet, Alert } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 
 import NumberContainer from "../components/NumberContainer";
 import Card from "../components/Card";
 import DefaultStyles from "../constants/default-styles";
+import MainButton from "../components/MainButton";
 
 const generateRandomBetween = (min, max, exclude) => {
   min = Math.ceil(min);
@@ -24,12 +26,11 @@ const GameScreen = (props) => {
   const currnetLow = useRef(1);
   const currentHigh = useRef(100);
 
-  const { userChoice, onGameOver} = props;
+  const { userChoice, onGameOver } = props;
 
   useEffect(() => {
-      if(currentGuess === userChoice)
-      onGameOver(rounds);
-  }, [currentGuess, userChoice, onGameOver])
+    if (currentGuess === userChoice) onGameOver(rounds);
+  }, [currentGuess, userChoice, onGameOver]);
 
   const nextGuessHanlder = (direction) => {
     if (
@@ -49,7 +50,7 @@ const GameScreen = (props) => {
       currentGuess
     );
     setCurrentGuess(nextNumber);
-    setRounds(curRounds => curRounds +1);
+    setRounds((curRounds) => curRounds + 1);
   };
 
   return (
@@ -57,11 +58,12 @@ const GameScreen = (props) => {
       <Text style={DefaultStyles.title}>Opponent's Guess</Text>
       <NumberContainer>{currentGuess}</NumberContainer>
       <Card style={styles.buttonContainer}>
-        <Button title="LOWER" onPress={nextGuessHanlder.bind(this, "lower")} />
-        <Button
-          title="GREATER"
-          onPress={nextGuessHanlder.bind(this, "greater")}
-        />
+        <MainButton onPress={nextGuessHanlder.bind(this, "lower")}>
+          <Ionicons name="remove" size={24} color={"white"} />
+        </MainButton>
+        <MainButton onPress={nextGuessHanlder.bind(this, "greater")}>
+          <Ionicons name="add" size={24} color={"white"} />
+        </MainButton>
       </Card>
     </View>
   );
@@ -77,8 +79,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-around",
     marginTop: 20,
-    width: 300,
-    maxWidth: "80%",
+    width: 400,
+    maxWidth: "90%",
   },
 });
 
