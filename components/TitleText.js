@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { Text, StyleSheet } from "react-native";
 
 const TitleText = (props) => {
   return <Text style={{...styles.title, ...props.style}}>{props.children}</Text>;
